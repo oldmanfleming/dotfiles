@@ -57,7 +57,9 @@ return {
             return true
           end,
         },
-        -- keep copilot config
+        -- keep other sources
+        { name = "buffer" },
+        { name = "path" },
         {
           name = "copilot",
           group_index = 1,
