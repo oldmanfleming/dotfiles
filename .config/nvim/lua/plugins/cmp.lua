@@ -41,6 +41,11 @@ return {
           fallback()
         end, { "i", "s" }),
       })
+      -- disable the completion previews.
+      -- find it incredibly distracting
+      opts.experimental = {
+        ghost_text = false,
+      }
       -- remove snippet completions
       -- https://github.com/hrsh7th/nvim-cmp/pull/1067
       opts.sources = cmp.config.sources({
