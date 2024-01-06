@@ -1,16 +1,24 @@
 {
+  // configure theming
   "workbench.iconTheme": "gruvbox-material-icon-theme",
   "workbench.colorTheme": "Gruvbox Dark Medium",
+  // remove annoying stuff
   "workbench.statusBar.visible": false,
-  "workbench.colorCustomizations": {},
-  "editor.minimap.enabled": false,
+  "workbench.activityBar.location": "hidden",
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.enablePreview": false,
+  "window.menuBarVisibility": "compact",
+  "window.commandCenter": false,
+  "window.title": "",
+  "explorer.autoReveal": false,
   "breadcrumbs.enabled": false,
+  "editor.minimap.enabled": false,
   "editor.renderWhitespace": "none",
   "editor.largeFileOptimizations": false,
-  "json.maxItemsComputed": 15000,
   "editor.inlineSuggest.enabled": true,
   "editor.semanticHighlighting.enabled": false,
   "editor.accessibilitySupport": "off",
+  // disable audio
   "audioCues.diffLineDeleted": "off",
   "audioCues.diffLineInserted": "off",
   "audioCues.diffLineModified": "off",
@@ -26,11 +34,15 @@
   "audioCues.taskFailed": "off",
   "audioCues.terminalCommandFailed": "off",
   "audioCues.terminalQuickFix": "off",
+  // formatting
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
+  // json
+  "json.maxItemsComputed": 15000,
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
+  // /js/ts
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -39,13 +51,16 @@
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
+  // golang
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
   "go.toolsManagement.autoUpdate": true,
+  // elixir
   "[elixir]": {
     "editor.defaultFormatter": "JakeBecker.elixir-ls"
   },
+  // rust
   "rust-analyzer.inlayHints.typeHints.enable": false,
   "rust-analyzer.inlayHints.parameterHints.enable": false,
   "rust-analyzer.inlayHints.chainingHints.enable": false,
@@ -56,6 +71,7 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.formatOnSave": true
   },
+  // vim
   "vim.leader": " ",
   "vim.useSystemClipboard": true,
   "vim.handleKeys": {
