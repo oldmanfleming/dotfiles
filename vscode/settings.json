@@ -1,0 +1,81 @@
+{
+  "workbench.iconTheme": "gruvbox-material-icon-theme",
+  "workbench.colorTheme": "Gruvbox Dark Medium",
+  "workbench.statusBar.visible": false,
+  "workbench.colorCustomizations": {},
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": false,
+  "editor.renderWhitespace": "none",
+  "editor.largeFileOptimizations": false,
+  "json.maxItemsComputed": 15000,
+  "editor.inlineSuggest.enabled": true,
+  "editor.semanticHighlighting.enabled": false,
+  "editor.accessibilitySupport": "off",
+  "audioCues.diffLineDeleted": "off",
+  "audioCues.diffLineInserted": "off",
+  "audioCues.diffLineModified": "off",
+  "audioCues.lineHasBreakpoint": "off",
+  "audioCues.lineHasError": "off",
+  "audioCues.lineHasFoldedArea": "off",
+  "audioCues.lineHasInlineSuggestion": "off",
+  "audioCues.noInlayHints": "off",
+  "audioCues.notebookCellCompleted": "off",
+  "audioCues.notebookCellFailed": "off",
+  "audioCues.onDebugBreak": "off",
+  "audioCues.taskCompleted": "off",
+  "audioCues.taskFailed": "off",
+  "audioCues.terminalCommandFailed": "off",
+  "audioCues.terminalQuickFix": "off",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "[elixir]": {
+    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+  },
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "rust-analyzer.inlayHints.renderColons": false,
+  "rust-analyzer.lens.implementations.enable": false,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
+  },
+  "vim.leader": " ",
+  "vim.useSystemClipboard": true,
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false,
+    "<C-n>": false,
+    "<C-w>": false,
+    "<C-p>": false,
+    "<C-h>": false,
+    "<C-b>": false,
+    "<C-c>": false,
+    "<C-v>": false
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    }
+  ]
+}
