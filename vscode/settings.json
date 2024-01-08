@@ -9,7 +9,7 @@
   "workbench.editor.enablePreview": false,
   "window.menuBarVisibility": "compact",
   "window.commandCenter": false,
-  "window.title": "",
+  "window.title": " ",
   "explorer.autoReveal": false,
   "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
@@ -83,15 +83,19 @@
     "<C-h>": false,
     "<C-b>": false,
     "<C-c>": false,
-    "<C-v>": false
+    "<C-v>": false,
   },
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
   "vim.normalModeKeyBindings": [
     {
-      "before": ["K"],
-      "commands": ["editor.action.showHover"]
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.showHover",
+      ],
     }
-  ]
+  ],
 }
