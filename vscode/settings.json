@@ -2,8 +2,9 @@
   // configure theming
   "workbench.iconTheme": "gruvbox-material-icon-theme",
   "workbench.colorTheme": "Gruvbox Dark Medium",
+  "editor.fontFamily": "RobotoMono Nerd Font Mono",
   // remove annoying stuff
-  "workbench.statusBar.visible": false,
+  "workbench.statusBar.visible": true,
   "workbench.activityBar.location": "hidden",
   "workbench.layoutControl.enabled": false,
   "workbench.editor.enablePreview": false,
@@ -98,4 +99,10 @@
       ],
     }
   ],
+  "macros": {
+    "saveAndExitVimInsertMode": [
+      "workbench.action.files.save",
+      "extension.vim_escape"
+    ]
+  }
 }
