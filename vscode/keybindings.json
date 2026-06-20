@@ -1,6 +1,0 @@
-[
-  {
-    "key": "ctrl+s",
-    "command": "macros.saveAndExitVimInsertMode"
-  }
-]

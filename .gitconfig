@@ -1,18 +1,18 @@
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	st = status
-[difftool "p4merge"]
-	cmd = /mnt/c/Program\\ Files/Perforce/p4merge.exe \"$(wslpath -aw $LOCAL)\" \"$(wslpath -aw $REMOTE)\"
-	prompt = false
-[diff]
-	tool = p4merge
-[merge]
-	tool = p4merge
-[mergetool "p4merge"]
-	cmd = /mnt/c/Program\\ Files/Perforce/p4merge.exe \"$(wslpath -aw $BASE)\" \"$(wslpath -aw $LOCAL)\" \"$(wslpath -aw $REMOTE)\" \"$(wslpath -aw $MERGED)\"
-	trustexitcode = false
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  st = status
 [difftool]
-	prompt = false
+  prompt = false
 [user]
-	email = evan.gordon.fleming@gmail.com
-	name = Evan Fleming
+  name = oldmanfleming
+  email = evan.gordon.fleming@gmail.com
+[core]
+  editor = code --wait
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED

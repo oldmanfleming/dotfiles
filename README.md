@@ -1,3 +1,3 @@
-# Minimal Dev Setup
+# Dotfiles
 
-
+Personal configs for development
