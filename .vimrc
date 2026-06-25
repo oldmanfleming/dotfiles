@@ -21,13 +21,13 @@ filetype plugin indent on     " filetype detection + per-language indent
 set number                    " line numbers
 set mouse=a                   " mouse support (handy for resizing splits)
 set noshowmode                " mode is shown in the statusline (lightline) instead
+set laststatus=2              " always show the statusline (needed for lightline)
 set clipboard=unnamed         " sync with the macOS system clipboard (needs +clipboard)
 set breakindent               " wrapped lines keep their indent
 set undofile                  " persistent undo across sessions
 set ignorecase smartcase      " case-insensitive search unless a capital is used
 set signcolumn=yes            " always show the sign column (no layout shift)
 set updatetime=250            " faster CursorHold / diagnostics
-set timeoutlen=300            " quicker which-key / mapped-sequence timeout
 set splitright splitbelow     " new splits open to the right / below
 set list                      " show invisible characters...
 set listchars=tab:»\ ,trail:·,nbsp:␣
@@ -60,11 +60,9 @@ call plug#begin('~/.vim/plugged')
 
 " --- UI / core UX -------------------------------------------------------
 Plug 'morhetz/gruvbox'                     " colorscheme
-Plug 'itchyny/lightline.vim'               " statusline
 Plug 'airblade/vim-gitgutter'              " git signs + hunks
 Plug 'tpope/vim-sleuth'                    " auto indent detect
 Plug 'machakann/vim-highlightedyank'       " flash on yank
-Plug 'liuchengxu/vim-which-key'            " popup of pending keys
 
 " --- Editing / text objects --------------------------------------------
 Plug 'tpope/vim-surround'                  " add/change/delete surroundings
@@ -75,9 +73,6 @@ Plug 'wellle/targets.vim'                  " richer a/i text objects
 " --- Fuzzy finder -------------------------------------------------------
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " installs the fzf binary
 Plug 'junegunn/fzf.vim'                    " :Files/:Rg/:Buffers etc
-
-" --- File explorer ------------------------------------------------------
-Plug 'preservim/nerdtree'                  " file tree on \
 
 " --- LSP + completion + snippets ---------------------------------------
 Plug 'prabirshrestha/vim-lsp'              " LSP client         (nvim-lspconfig)
@@ -144,12 +139,6 @@ nnoremap <leader>sn :execute 'Files ' . expand('~/.vim')<CR>
 nnoremap <leader>/  :BLines<CR>
 " find existing buffers
 nnoremap <leader><leader> :Buffers<CR>
-
-" File tree on \ — toggles NERDTree, mirroring the neo-tree reveal binding.
-nnoremap <silent> \ :NERDTreeToggle<CR>
-" Close the tree automatically after opening a file (matches the nvim tweak).
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeMinimalUI = 1
 
 " ============================================================
 " SECTION 6: LSP  (vim-lsp + vim-lsp-settings)
@@ -244,19 +233,5 @@ inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
 
 " Force the completion menu to (re)appear on demand.
 imap <c-space> <Plug>(asyncomplete_force_refresh)
-
-" ============================================================
-" SECTION 9: WHICH-KEY
-"   Press <space> and pause to see available leader mappings.
-" ============================================================
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
-let g:which_key_map = {
-      \ 's': { 'name': '+search' },
-      \ 'f': 'format-buffer',
-      \ 'q': 'diagnostics-list',
-      \ '/': 'find-in-buffer',
-      \ }
-autocmd VimEnter * silent! call which_key#register('<Space>', 'g:which_key_map')
 
 " vim: ts=2 sts=2 sw=2 et
