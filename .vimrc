@@ -18,7 +18,7 @@ let g:have_nerd_font = 0
 set nocompatible              " behave like Vim, not vi
 syntax enable                 " Vim's built-in syntax (kickstart uses treesitter)
 filetype plugin indent on     " filetype detection + per-language indent
-set number                    " line numbers
+set relativenumber            " line numbers
 set mouse=a                   " mouse support (handy for resizing splits)
 set noshowmode                " mode is shown in the statusline (lightline) instead
 set laststatus=2              " always show the statusline (needed for lightline)
@@ -103,7 +103,11 @@ let g:lightline = { 'colorscheme': 'gruvbox' }
 " Clear search highlight on <Esc> in normal mode.
 nnoremap <silent> <Esc> :nohlsearch<CR>
 
-" Window navigation with Ctrl + h/j/k/l 
+" Make Y yank to end of line, consistent with D (d$) and C (c$).
+" Plain Vim defines Y as yy (yank whole line); this matches Neovim's default.
+nnoremap Y y$
+
+" Window navigation with Ctrl + h/j/k/l
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
@@ -139,6 +143,21 @@ nnoremap <leader>sn :execute 'Files ' . expand('~/.vim')<CR>
 nnoremap <leader>/  :BLines<CR>
 " find existing buffers
 nnoremap <leader><leader> :Buffers<CR>
+
+" Open the cheatsheet (~/.vim/cheatsheet.md) read-only in a split on the right.
+" If it's already open, just jump to its window instead of stacking splits.
+" Close it like any window with :q.
+function! s:OpenCheatsheet() abort
+  let l:file = expand('~/.vim/cheatsheet.md')
+  let l:winid = bufwinid(bufnr(l:file))
+  if l:winid != -1
+    call win_gotoid(l:winid)
+    return
+  endif
+  execute 'botright vsplit ' . fnameescape(l:file)
+  setlocal readonly nomodifiable
+endfunction
+nnoremap <silent> <leader>? :call <SID>OpenCheatsheet()<CR>
 
 " ============================================================
 " SECTION 6: LSP  (vim-lsp + vim-lsp-settings)
