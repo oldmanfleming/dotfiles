@@ -41,6 +41,11 @@ set termguicolors             " 24-bit color (needed for gruvbox)
 set wildmenu                  " better command-line completion
 set shortmess+=c
 
+let g:netrw_liststyle = 3     " nested tree view
+let g:netrw_banner = 0        " hide the top help banner
+let g:netrw_winsize = 25      " explorer takes 25% width (for :Lex)
+let g:netrw_keepdir = 0       " change working directory when opening sub-folders
+
 " Keep undo / swap / backup files out of your project directories by sending
 " them to central folders under ~/.vim (created if missing). The trailing //
 " makes Vim encode the full path in the filename to avoid collisions.
@@ -94,6 +99,21 @@ silent! colorscheme gruvbox
 
 " lightline shows mode/file/git/etc; keep it simple and matched to gruvbox.
 let g:lightline = { 'colorscheme': 'gruvbox' }
+
+" gitgutter signs: give each sign its own colored cell (saturated gruvbox
+" background + dark symbol) so changes read as a chip in the gutter rather
+" than a thin +/- glyph. Re-applied on ColorScheme so gruvbox can't clobber it.
+function! s:GitGutterHighlights() abort
+  highlight GitGutterAdd          guifg=#1d2021 guibg=#98971a ctermfg=234 ctermbg=100
+  highlight GitGutterChange       guifg=#1d2021 guibg=#d79921 ctermfg=234 ctermbg=172
+  highlight GitGutterDelete       guifg=#1d2021 guibg=#cc241d ctermfg=234 ctermbg=124
+  highlight GitGutterChangeDelete guifg=#1d2021 guibg=#d79921 ctermfg=234 ctermbg=172
+endfunction
+augroup gitgutter_highlights
+  autocmd!
+  autocmd ColorScheme * call s:GitGutterHighlights()
+augroup END
+call s:GitGutterHighlights()
 
 " ============================================================
 " SECTION 2: KEYMAPS

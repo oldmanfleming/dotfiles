@@ -22,3 +22,5 @@ export PATH="$PATH:/Users/efleming/.cargo/bin"
 export PATH="$PATH:/Users/efleming/go/bin"
 
 export PATH="$PATH:/Users/efleming/.local/bin/claude"
+
+bindkey -v
