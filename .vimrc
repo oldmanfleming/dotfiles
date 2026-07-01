@@ -41,10 +41,21 @@ set termguicolors             " 24-bit color (needed for gruvbox)
 set wildmenu                  " better command-line completion
 set shortmess+=c
 
-let g:netrw_liststyle = 3     " nested tree view
-let g:netrw_banner = 0        " hide the top help banner
-let g:netrw_winsize = 25      " explorer takes 25% width (for :Lex)
-let g:netrw_keepdir = 0       " change working directory when opening sub-folders
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinSide = 35
+let g:NERDTreeQuitOnOpen = 0
+
+function! s:NerdTreeRevealOrClose() abort
+  if exists('g:NERDTree') && g:NERDTree.IsOpen() && bufwinnr(t:NERDTreeBufName) == winnr()
+    NERDTreeClose
+  elseif filereadable(expand('%'))
+    NERDTreeFind
+  else
+    NERDTreeToggle
+  endif
+endfunction
+nnoremap <silent> <leader>e :call <SID>NerdTreeRevealOrClose()<CR>
 
 " Keep undo / swap / backup files out of your project directories by sending
 " them to central folders under ~/.vim (created if missing). The trailing //
@@ -64,6 +75,7 @@ set backupdir=~/.vim/backup//
 call plug#begin('~/.vim/plugged')
 
 " --- UI / core UX -------------------------------------------------------
+Plug 'preservim/nerdtree'                  " file tree sidebar
 Plug 'morhetz/gruvbox'                     " colorscheme
 Plug 'airblade/vim-gitgutter'              " git signs + hunks
 Plug 'tpope/vim-sleuth'                    " auto indent detect
