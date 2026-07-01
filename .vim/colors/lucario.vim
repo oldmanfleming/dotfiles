@@ -1,4 +1,3 @@
-set background=dark
 highlight clear
 
 set t_Co=256

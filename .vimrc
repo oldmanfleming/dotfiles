@@ -30,7 +30,7 @@ set signcolumn=yes            " always show the sign column (no layout shift)
 set updatetime=250            " faster CursorHold / diagnostics
 set splitright splitbelow     " new splits open to the right / below
 set list                      " show invisible characters...
-set listchars=tab:»\ ,trail:·,nbsp:␣
+set listchars=tab:\ \ ,trail:·,nbsp:␣
 set incsearch hlsearch        " incremental + highlighted search
 set cursorline                " highlight the current line
 set scrolloff=10              " keep 10 lines of context around the cursor
@@ -104,31 +104,20 @@ call plug#end()
 " ============================================================
 " SECTION 4: COLORSCHEME + STATUSLINE
 " ============================================================
-let g:gruvbox_contrast_dark = 'hard'       " 'hard' | 'medium' | 'soft'
-let g:gruvbox_italicize_comments = 0
 set background=dark
-silent! colorscheme gruvbox
 
-" lightline shows mode/file/git/etc; keep it simple and matched to gruvbox.
-let g:lightline = { 'colorscheme': 'gruvbox' }
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_italicize_comments = 0
+" let g:lightline = { 'colorscheme': 'gruvbox' }
+" colorscheme gruvbox
 
-" gitgutter signs: give each sign its own colored cell (saturated gruvbox
-" background + dark symbol) so changes read as a chip in the gutter rather
-" than a thin +/- glyph. Re-applied on ColorScheme so gruvbox can't clobber it.
-function! s:GitGutterHighlights() abort
-  highlight GitGutterAdd          guifg=#1d2021 guibg=#98971a ctermfg=234 ctermbg=100
-  highlight GitGutterChange       guifg=#1d2021 guibg=#d79921 ctermfg=234 ctermbg=172
-  highlight GitGutterDelete       guifg=#1d2021 guibg=#cc241d ctermfg=234 ctermbg=124
-  highlight GitGutterChangeDelete guifg=#1d2021 guibg=#d79921 ctermfg=234 ctermbg=172
-endfunction
-augroup gitgutter_highlights
-  autocmd!
-  autocmd ColorScheme * call s:GitGutterHighlights()
-augroup END
-call s:GitGutterHighlights()
+" colorscheme lucario
+" colorscheme lackluster
+colorscheme naysayer
+" colorscheme catado
 
 " ============================================================
-" SECTION 2: KEYMAPS
+" SECTION 5: KEYMAPS
 "   Mirrors kickstart's SECTION 2. Buffer-local LSP maps live in SECTION 6.
 " ============================================================
 
@@ -156,7 +145,7 @@ endfor
 let g:highlightedyank_highlight_duration = 200
 
 " ============================================================
-" SECTION 5: SEARCH & NAVIGATION (fzf)
+" SECTION 6: SEARCH & NAVIGATION (fzf)
 " ============================================================
 " NOTE: Vim :map commands do NOT allow trailing comments (the text would be
 " typed into the command), so each mapping's purpose is described above it.
@@ -192,7 +181,7 @@ endfunction
 nnoremap <silent> <leader>? :call <SID>OpenCheatsheet()<CR>
 
 " ============================================================
-" SECTION 6: LSP  (vim-lsp + vim-lsp-settings)
+" SECTION 7: LSP  (vim-lsp + vim-lsp-settings)
 " ============================================================
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_signs_enabled = 1
@@ -245,7 +234,7 @@ augroup lsp_install
 augroup END
 
 " ============================================================
-" SECTION 7: FORMAT ON SAVE
+" SECTION 8: FORMAT ON SAVE
 " ============================================================
 augroup lsp_format_on_save
   autocmd!
