@@ -20,6 +20,7 @@ syntax enable                 " Vim's built-in syntax (kickstart uses treesitter
 filetype plugin indent on     " filetype detection + per-language indent
 set relativenumber            " line numbers
 set mouse=a                   " mouse support (handy for resizing splits)
+set ttymouse=sgr              " report live drag motion (fixes selection not showing until mouse release, esp. in tmux)
 set noshowmode                " mode is shown in the statusline (lightline) instead
 set laststatus=2              " always show the statusline (needed for lightline)
 set clipboard=unnamed         " sync with the macOS system clipboard (needs +clipboard)
@@ -41,22 +42,6 @@ set termguicolors             " 24-bit color (needed for gruvbox)
 set wildmenu                  " better command-line completion
 set shortmess+=c
 
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeWinSide = 35
-let g:NERDTreeQuitOnOpen = 0
-
-function! s:NerdTreeRevealOrClose() abort
-  if exists('g:NERDTree') && g:NERDTree.IsOpen() && bufwinnr(t:NERDTreeBufName) == winnr()
-    NERDTreeClose
-  elseif filereadable(expand('%'))
-    NERDTreeFind
-  else
-    NERDTreeToggle
-  endif
-endfunction
-nnoremap <silent> <leader>e :call <SID>NerdTreeRevealOrClose()<CR>
-
 " Keep undo / swap / backup files out of your project directories by sending
 " them to central folders under ~/.vim (created if missing). The trailing //
 " makes Vim encode the full path in the filename to avoid collisions.
@@ -70,7 +55,7 @@ set directory=~/.vim/swap//
 set backupdir=~/.vim/backup//
 
 " ============================================================
-" SECTION 3: PLUGINS  (vim-plug)
+" SECTION 2: PLUGINS  (vim-plug)
 " ============================================================
 call plug#begin('~/.vim/plugged')
 
@@ -92,17 +77,17 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " installs the fzf binary
 Plug 'junegunn/fzf.vim'                    " :Files/:Rg/:Buffers etc
 
 " --- LSP + completion + snippets ---------------------------------------
-Plug 'prabirshrestha/vim-lsp'              " LSP client         (nvim-lspconfig)
-Plug 'mattn/vim-lsp-settings'              " auto-install servers (mason.nvim)
-Plug 'prabirshrestha/asyncomplete.vim'     " completion engine  (blink.cmp)
+Plug 'prabirshrestha/vim-lsp'              " LSP client
+Plug 'mattn/vim-lsp-settings'              " auto-install servers
+Plug 'prabirshrestha/asyncomplete.vim'     " completion engine
 Plug 'prabirshrestha/asyncomplete-lsp.vim' " LSP completion source
-Plug 'hrsh7th/vim-vsnip'                   " snippet engine     (LuaSnip)
+Plug 'hrsh7th/vim-vsnip'                   " snippet engine
 Plug 'hrsh7th/vim-vsnip-integ'             " vsnip <-> LSP/asyncomplete glue
 
 call plug#end()
 
 " ============================================================
-" SECTION 4: COLORSCHEME + STATUSLINE
+" SECTION 3: COLORSCHEME + STATUSLINE
 " ============================================================
 set background=dark
 
@@ -115,6 +100,25 @@ set background=dark
 " colorscheme lackluster
 colorscheme naysayer
 " colorscheme catado
+"
+" ============================================================
+" SECTION 4: FILE TREE EXPLORER
+" ============================================================
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinSide = 35
+let g:NERDTreeQuitOnOpen = 0
+
+function! s:NerdTreeRevealOrClose() abort
+  if exists('g:NERDTree') && g:NERDTree.IsOpen() && bufwinnr(t:NERDTreeBufName) == winnr()
+    NERDTreeClose
+  elseif filereadable(expand('%'))
+    NERDTreeFind
+  else
+    NERDTreeToggle
+  endif
+endfunction
+nnoremap <silent> <leader>e :call <SID>NerdTreeRevealOrClose()<CR>
 
 " ============================================================
 " SECTION 5: KEYMAPS
@@ -233,9 +237,6 @@ augroup lsp_install
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" ============================================================
-" SECTION 8: FORMAT ON SAVE
-" ============================================================
 augroup lsp_format_on_save
   autocmd!
   autocmd BufWritePre *.go,*.rs LspDocumentFormatSync
