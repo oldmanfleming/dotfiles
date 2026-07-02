@@ -1,0 +1,20 @@
+{
+  "name": "naysayer-vim-theme",
+  "displayName": "Naysayer (from vim)",
+  "description": "Port of my ~/.vim/colors/naysayer.vim colorscheme",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Naysayer (vim)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/naysayer-color-theme.json"
+      }
+    ]
+  }
+}
