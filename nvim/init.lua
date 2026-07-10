@@ -393,12 +393,9 @@ do
   }
 
   -- [[ Colorscheme ]]
-  -- You can easily change to a different colorscheme.
-  -- Change the name of the colorscheme plugin below, and then
-  -- change the command under that to load whatever the name of that colorscheme is.
+  -- naysayer lives in this config: colors/naysayer.lua -> lua/naysayer/init.lua
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  vim.pack.add { gh 'RostislavArts/naysayer.nvim' }
   vim.cmd.colorscheme 'naysayer'
 
   -- Highlight todo, notes, etc in comments
